@@ -9,7 +9,6 @@ export default {
   name: "StaffView",
   components: {
     StaffList,
-    StaffList,
   },
 };
 </script>

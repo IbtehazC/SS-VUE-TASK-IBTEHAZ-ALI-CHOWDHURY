@@ -7,40 +7,67 @@ export default new Vuex.Store({
   state: {
     employees: [
       {
+        img: "",
         name: "John Wick",
         email: "johnwick@gmail.com",
-        phone: "XXXX-XXXXXXX",
+        phoneNumber: "XXXXXXXXXXX",
       },
       {
+        img: "",
         name: "Uzumaki Naruto",
         email: "uzumakinaruto@gmail.com",
-        phone: "XXXX-XXXXXXX",
+        phoneNumber: "XXXXXXXXXXX",
       },
       {
+        img: "",
         name: "Ayanokouji Kyotaka",
         email: "kyo@gmail.com",
-        phone: "XXXX-XXXXXXX",
+        phoneNumber: "XXXXXXXXXXX",
       },
       {
+        img: "",
         name: "Jon Snow",
         email: "jonsnow@gmail.com",
-        phone: "XXXX-XXXXXXX",
+        phoneNumber: "XXXXXXXXXXX",
+      },
+    ],
+    admins: [
+      {
+        img: "",
+        name: "Uchiha Itachi",
+        email: "itachi@gmail.com",
+        phoneNumber: "XXXXXXXXXXX",
+      },
+      {
+        img: "",
+        name: "Namizake Minato",
+        email: "rasengan@gmail.com",
+        phoneNumber: "XXXXXXXXXXX",
       },
     ],
   },
   getters: {
     getEmployee(state) {
-      return state.employee;
+      return state.employees;
+    },
+    getAdmins(state) {
+      return state.admins;
     },
   },
   mutations: {
-    setName(state, payload) {
-      state.employee = payload;
+    setEmployees(state, payload) {
+      state.employees.unshift(payload);
+    },
+    setAdmins(state, payload) {
+      state.admins.unshift(payload);
     },
   },
   actions: {
     addEmployee({ commit }, employee) {
-      commit("setName", employee);
+      commit("setEmployees", employee);
+    },
+    addAdmin({ commit }, admin) {
+      commit("setAdmins", admin);
     },
   },
 });
