@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; justify: center">
+  <div class="container">
     <div v-for="employee in employees">
       <div>{{ employee.name }}</div>
       <div>{{ employee.email }}</div>
@@ -18,3 +18,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  gap: 16px;
+}
+</style>
