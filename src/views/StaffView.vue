@@ -1,5 +1,5 @@
 <template>
-  <StaffDetails :id="id" />
+  <StaffDetails />
 </template>
 
 <script>

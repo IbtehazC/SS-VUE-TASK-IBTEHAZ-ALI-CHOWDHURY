@@ -66,6 +66,7 @@ export default {
         phoneNumber: "",
         jobTitle: "",
       },
+      genders: ["Male", "Female", "I don't want to disclose"],
       nameRules: [
         (v) => !!v || "Name is required",
         (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
@@ -74,7 +75,6 @@ export default {
         (v) => !!v || "E-mail is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
-      genders: ["Male", "Female", "Non-binary"],
       phoneNumberRules: [
         (v) => !!v || "Phone Number is required",
         (v) => /^\d+$/.test(v) || "Phone Number must only contain digits",
@@ -87,20 +87,11 @@ export default {
   },
   props: ["type"],
   methods: {
-    validate() {
-      this.$refs.form.validate();
-    },
-    reset() {
-      this.$refs.form.reset();
-    },
-    ...mapActions(["addEmployee", "addAdmin"]),
+    ...mapActions(["addStaff"]),
     handleSubmit() {
-      if (this.type == "employee") {
-        this.addEmployee(this.staffData);
-      }
-      if (this.type == "admin") {
-        this.addAdmin(this.staffData);
-      }
+      this.type[0].toUpperCase;
+      const newStaff = { ...this.staffData, type: this.type };
+      this.addStaff(newStaff);
     },
   },
 };

@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    employees: [
+    staffs: [
       {
         id: "1",
         img: "",
@@ -14,7 +14,7 @@ export default new Vuex.Store({
         phoneNumber: "9088289",
         jobTitle: "Assassin",
         gender: "Male",
-        type: "Employee",
+        type: "employee",
       },
       {
         id: "2",
@@ -24,7 +24,7 @@ export default new Vuex.Store({
         phoneNumber: "123445",
         jobTitle: "Ninja",
         gender: "Male",
-        type: "Employee",
+        type: "employee",
       },
       {
         id: "3",
@@ -34,7 +34,7 @@ export default new Vuex.Store({
         phoneNumber: "1234400",
         jobTitle: "Student",
         gender: "Male",
-        type: "Employee",
+        type: "employee",
       },
       {
         id: "4",
@@ -44,10 +44,8 @@ export default new Vuex.Store({
         phoneNumber: "0000000",
         jobTitle: "Commander of the Night Watch",
         gender: "Male",
-        type: "Employee",
+        type: "employee",
       },
-    ],
-    admins: [
       {
         id: "5",
         img: "",
@@ -56,7 +54,7 @@ export default new Vuex.Store({
         phoneNumber: "000000000",
         jobTitle: "Rouge Ninja",
         gender: "Male",
-        type: "Admin",
+        type: "admin",
       },
       {
         id: "6",
@@ -66,54 +64,48 @@ export default new Vuex.Store({
         phoneNumber: "00000000",
         jobTitle: "Hokage",
         gender: "Male",
-        type: "Admin",
+        type: "admin",
       },
     ],
   },
-  getters: {},
-  mutations: {
-    setEmployees(state, payload) {
-      state.employees.unshift(payload);
+  getters: {
+    getEmployees(state) {
+      return state.staffs.filter((staff) => staff.type === "employee");
     },
-    setAdmins(state, payload) {
-      state.admins.unshift(payload);
+    getAdmins(state) {
+      return state.staffs.filter((staff) => staff.type === "admin");
+    },
+  },
+  mutations: {
+    setStaff(state, payload) {
+      state.staffs = payload;
     },
   },
   actions: {
-    addEmployee({ commit }, employee) {
-      commit("setEmployees", employee);
+    addStaff({ commit }, staffData) {
+      const newStaffsArray = [staffData, ...this.state.staffs];
+      console.log(newStaffsArray);
+      commit("setStaff", newStaffsArray);
     },
-    addAdmin({ commit }, admin) {
-      commit("setAdmins", admin);
+    editStaff({ commit }, staffData) {
+      const index = this.state.staffs.findIndex(
+        (staff) => staff.id === staffData.id
+      );
+      const newStaffsArray = this.state.staffs;
+      newStaffsArray.splice(index, 1, staffData);
+      commit("setStaff", newStaffsArray);
+    },
+    deleteStaff({ commit }, id) {
+      const index = this.state.staffs.findIndex((staff) => staff.id === id);
+      const newStaffsArray = this.state.staffs;
+      newStaffsArray.splice(index, 1);
+      commit("setStaff", newStaffsArray);
     },
     getStaffById({ commit }, id) {
-      var staff = this.state.employees.find((s) => s.id === id);
-      if (staff == null) {
-        staff = this.state.admins.find((s) => s.id === id);
-      }
+      var staff = this.state.staffs.find((s) => s.id === id);
       return new Promise((resolve, reject) => {
         if (staff != null) {
           resolve(staff);
-        } else {
-          reject("Error");
-        }
-      });
-    },
-    getEmployeeById({ commit }, id) {
-      var employee = this.state.employees.find((e) => e.id === id);
-      return new Promise((resolve, reject) => {
-        if (employee != null) {
-          resolve(employee);
-        } else {
-          reject("Error");
-        }
-      });
-    },
-    getAdminsById({ commit }, id) {
-      var admin = this.state.admins.find((a) => a.id === id);
-      return new Promise((resolve, reject) => {
-        if (admin != null) {
-          resolve(admin);
         } else {
           reject("Error");
         }

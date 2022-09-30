@@ -48,6 +48,7 @@
         <v-text-field
           v-model="staff.name"
           class="text-h6 px-2"
+          :rules="nameRules"
           :solo="!editMode"
           flat
           :readonly="!editMode"
@@ -57,6 +58,7 @@
         <v-text-field
           v-model="staff.jobTitle"
           class="text-h6 px-2"
+          :rules="jobTitleRules"
           :solo="!editMode"
           flat
           :readonly="!editMode"
@@ -65,6 +67,7 @@
         <p class="ml-5 my-0 caption">EMAIL</p>
         <v-text-field
           v-model="staff.email"
+          :rules="emailRules"
           class="text-h6 px-2 ml-3"
           prepend-icon="mdi-email"
           :solo="!editMode"
@@ -78,6 +81,7 @@
         <v-text-field
           v-model="staff.phoneNumber"
           class="text-h6 px-2 ma-0"
+          :rules="phoneNumberRules"
           prepend-icon="mdi-phone"
           :solo="!editMode"
           flat
@@ -88,6 +92,7 @@
         <v-select
           v-model="staff.gender"
           class="text-h6 px-0"
+          :rules="[(v) => !!v || 'Item is required']"
           :items="genders"
           :solo="!editMode"
           flat
@@ -109,7 +114,7 @@ export default {
     return {
       genders: ["Male", "Female", "I don't want to disclose"],
       editMode: false,
-      employeeTypes: ["Admin", "Employee"],
+      employeeTypes: ["admin", "employee"],
       staff: {
         id: "",
         img: "",
@@ -118,8 +123,24 @@ export default {
         phoneNumber: "",
         jobTitle: "",
         gender: "I don't want to disclose",
-        type: "Employee",
+        type: "employee",
       },
+      nameRules: [
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
+      ],
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      phoneNumberRules: [
+        (v) => !!v || "Phone Number is required",
+        (v) => /^\d+$/.test(v) || "Phone Number must only contain digits",
+        (v) =>
+          (v && v.length <= 11) ||
+          "Phone Number must be less than or equals to 11 digits",
+      ],
+      jobTitleRules: [(v) => !!v || "Job title is required"],
     };
   },
   props: ["id"],
@@ -128,6 +149,7 @@ export default {
       this.editMode = !this.editMode;
       if (!this.editMode) {
         alert("Saved successfully");
+        this.$store.dispatch("editStaff", this.staff);
       }
     },
     onFileChanged(e) {
