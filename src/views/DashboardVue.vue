@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
-    <v-row class="ma-4">
-      <v-card elevation="2" class="my-2 rounded-lg">
+  <v-card max-width="1400px" class="mx-auto px-8 bg" elevation="2">
+    <v-row class="my-4 mx-auto justify-start align center">
+      <v-card elevation="2" class="my-4 rounded-lg">
         <v-tabs v-model="tab" class="ml-0 rounded-lg" fixed-tabs color="brown">
           <v-tabs-slider color="brown" right></v-tabs-slider>
           <v-tab v-for="item in items" :key="item">
@@ -11,47 +11,45 @@
       </v-card>
     </v-row>
     <v-divider></v-divider>
-    <v-row class="ma-4 justify-space-between">
-      <v-col>
-        <v-text class="my-0">No. of Staffs: 100</v-text>
-      </v-col>
-      <v-col>
+    <v-row class="my-4 mx-auto justify-space-between align center">
+      <p class="my-0">No. of Staffs: 100</p>
+      <div class="d-flex">
         <router-link to="/create/employee" tag="button">
           <v-btn outlined color="brown" large right>
             <v-icon left>mdi-plus</v-icon>Add
           </v-btn>
         </router-link>
-        <v-menu key="text" rounded="rounded" offset-y>
-          <template v-slot:activator="{ attrs, on }">
-            <v-btn
-              large
-              color="brown"
-              class="white--text ml-4"
-              v-bind="attrs"
-              v-on="on"
-            >
-              Table View
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item v-for="item in menuItems" :key="item" link>
-              <v-list-item-title v-text="item"></v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-col>
+        <div class="ml-4">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="brown" dark large v-bind="attrs" v-on="on">
+                {{ menuItems[selectedItem] }}
+              </v-btn>
+            </template>
+            <v-list-item-group active-class="border" color="brown">
+              <v-list-item v-for="(item, i) in menuItems" :key="i">
+                <v-list-item-content @click="selectedItem = i">
+                  <v-list-item-title>{{ item }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-menu>
+        </div>
+      </div>
     </v-row>
-    <v-row class="ma-4">
+    <v-row full-width class="ma-0">
       <v-tabs-items v-model="tab">
         <v-tab-item>
-          <StaffsList :staffs="admins" />
+          <StaffsList v-if="selectedItem == 0" :staffs="admins" />
+          <StaffsGrid v-if="selectedItem == 1" :staffs="admins" />
         </v-tab-item>
         <v-tab-item>
-          <StaffsList :staffs="employees" />
+          <StaffsList v-if="selectedItem == 0" :staffs="employees" />
+          <StaffsGrid v-if="selectedItem == 1" :staffs="employees" />
         </v-tab-item>
       </v-tabs-items>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -64,8 +62,10 @@ export default {
   data() {
     return {
       tab: null,
+      selectedItem: 0,
       items: ["admin", "employee"],
       menuItems: ["Table View", "Grid View"],
+      isTableView: true,
     };
   },
   computed: {
@@ -74,6 +74,9 @@ export default {
       admins: "getAdmins",
     }),
   },
-  components: { StaffsList, StaffsGrid, StaffsList, StaffsList },
+  methods: {
+    setTableView(bool) {},
+  },
+  components: { StaffsList, StaffsGrid },
 };
 </script>

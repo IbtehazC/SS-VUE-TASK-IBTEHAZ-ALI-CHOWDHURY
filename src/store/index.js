@@ -20,7 +20,7 @@ export default new Vuex.Store({
         id: "2",
         img: "",
         name: "Uzumaki Naruto",
-        email: "uzumakinaruto@gmail.com",
+        email: "naruto@gmail.com",
         phoneNumber: "123445",
         jobTitle: "Ninja",
         gender: "Male",

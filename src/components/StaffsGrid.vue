@@ -1,57 +1,54 @@
 <template>
-  <v-row background-color="transparent">
-    <v-card v-for="staff in staffs" class="mx-auto my-12" max-width="240">
-      <v-img
-        height="120"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-      ></v-img>
-
-      <v-card-title>Cafe Badilico</v-card-title>
-      <v-card-text>
-        <v-row align="center" class="mx-0">
-          <v-rating
-            :value="4.5"
-            color="amber"
-            dense
-            half-increments
-            readonly
-            size="14"
-          ></v-rating>
-          <div class="grey--text ms-4">4.5 (413)</div>
-        </v-row>
-
-        <div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
-        <div>
-          Small plates, salads & sandwiches - an intimate setting with 12 indoor
-          seats plus patio seating.
-        </div>
-      </v-card-text>
-
-      <v-divider class="mx-4"></v-divider>
-
-      <v-card-title>Tonight's availability</v-card-title>
-
-      <v-card-text>
-        <v-chip-group
-          v-model="selection"
-          active-class="deep-purple accent-4 white--text"
-          column
-        >
-          <v-chip>5:30PM</v-chip>
-
-          <v-chip>7:30PM</v-chip>
-
-          <v-chip>8:00PM</v-chip>
-
-          <v-chip>9:00PM</v-chip>
-        </v-chip-group>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text @click="reserve">
-          Reserve
-        </v-btn>
+  <v-row class="grey lighten-3 my-4">
+    <v-card
+      width="270"
+      v-for="staff in staffs"
+      :key="staff.id"
+      class="mx-4 justify-center py-2 my-8 rounded-lg elevation-2"
+    >
+      <v-card-actions class="justify-end">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on" icon>
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="py-0 my-0">
+            <v-list-item
+              class="py-0 my-0"
+              v-for="(item, index) in items"
+              :key="index"
+              link
+            >
+              {{ item.title }}
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-card-actions>
+      <div class="text-center my-2">
+        <v-avatar size="80" center>
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+          ></v-img>
+        </v-avatar>
+      </div>
+      <v-card-title class="justify-center">{{ staff.name }}</v-card-title>
+      <v-card-text class="grey--text text-center py-2">
+        {{ staff.jobTitle }}
+      </v-card-text>
+      <v-card-text>
+        <v-card class="elevation-0 brown lighten-5" outlined>
+          <v-card-text class="py-2">
+            <v-icon size="20" class="mr-2">mdi-email</v-icon>
+            {{ staff.email }}
+          </v-card-text>
+          <v-divider />
+          <v-card-text class="py-2">
+            <v-icon size="20" class="mr-2">mdi-phone</v-icon>
+            {{ staff.phoneNumber }}
+          </v-card-text>
+        </v-card>
+      </v-card-text>
     </v-card>
   </v-row>
 </template>
@@ -77,6 +74,7 @@ export default {
         { text: "Phone Number", value: "phoneNumber", sortable: false },
         { text: "Actions", value: "actions", sortable: false },
       ],
+      items: [{ title: "Edit" }, { title: "Delete" }],
     };
   },
   props: ["staffs"],

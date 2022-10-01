@@ -3,10 +3,7 @@
     <!-- <NavigationDrawer /> -->
     <Navbar />
     <v-main class="grey lighten-3">
-      <div class="d-flex">
-        <NavigationDrawer  />
-        <router-view />
-      </div>
+      <router-view />
     </v-main>
   </v-app>
 </template>

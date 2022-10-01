@@ -1,22 +1,43 @@
 <template>
-  <nav>
+  <div>
     <v-app-bar color="white" elevate-on-scroll>
-      <router-link to="/" tag="button">
-        <v-toolbar-title class="text-uppercase">
-          <span class="font-weight-light">Staff </span>
-          <span>Manager</span>
-        </v-toolbar-title></router-link
-      >
-      <v-spacer></v-spacer>
-      <router-link to="/" tag="button">
-        <v-btn depressed color="white">Home</v-btn>
-      </router-link>
-      <router-link to="/about" tag="button">
-        <v-btn depressed color="white">About</v-btn>
-      </router-link>
-      <router-link to="/staff" tag="button">
-        <v-btn depressed color="white">Staffs</v-btn>
-      </router-link>
+      <v-toolbar-title>Staff Management</v-toolbar-title>
+      <v-spacer />
+
+      <span class="hidden-sm-and-up">
+        <v-btn @click.stop="drawer = !drawer">Menu</v-btn>
+      </span>
+
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn to="/">Home</v-btn>
+        <v-btn to="/about">About</v-btn>
+        <v-btn to="/staff">Staff</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
-  </nav>
+
+    <v-navigation-drawer v-model="drawer" absolute temporary right>
+      <v-list>
+        <v-list-item v-for="item in items" :key="item.title">
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      drawer: false,
+      items: [
+        { title: "Home", link: "/" },
+        { title: "About", link: "/about" },
+        { title: "Try Out", link: "/staff" },
+      ],
+    };
+  },
+};
+</script>
