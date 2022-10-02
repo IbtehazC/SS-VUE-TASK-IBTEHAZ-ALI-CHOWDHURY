@@ -1,7 +1,7 @@
 <template>
   <v-sheet max-width="1550px" color="#EFEFEF" class="mx-auto">
     <v-container fluid class="px-0">
-      <v-row class="my-4 justify-start align center">
+      <v-row class="my-4 mx-4 justify-start align center">
         <v-card elevation="2" class="my-4 rounded-lg">
           <v-tabs
             v-model="tab"
@@ -17,7 +17,7 @@
         </v-card>
       </v-row>
       <v-divider></v-divider>
-      <v-row class="my-4 mx-auto justify-space-between align center">
+      <v-row class="my-4 mx-4 justify-space-between align center">
         <p class="my-0 text-subtitle-1 font-weight-bold">No. of Staffs: 100</p>
         <div class="d-flex">
           <router-link to="/create/employee" tag="button">
@@ -49,9 +49,9 @@
           </div>
         </div>
       </v-row>
-      <v-tabs-items class="rounded-xl" v-model="tab">
+      <v-tabs-items class="rounded-lg mx-4" v-model="tab">
         <v-tab-item>
-          <StaffsList v-if="selectedItem == 0" :staffs="admins" />
+          <StaffsTable v-if="selectedItem == 0" :staffs="admins" />
           <StaffsGrid v-if="selectedItem == 1" :staffs="admins" />
         </v-tab-item>
         <v-tab-item>
@@ -67,6 +67,7 @@
 import { mapGetters } from "vuex";
 import StaffsList from "@/components/StaffsList.vue";
 import StaffsGrid from "@/components/StaffsGrid.vue";
+import StaffsTable from "@/components/StaffsTable.vue";
 
 export default {
   name: "Dashboard",
@@ -88,6 +89,6 @@ export default {
   methods: {
     setTableView(bool) {},
   },
-  components: { StaffsList, StaffsGrid },
+  components: { StaffsList, StaffsGrid, StaffsTable },
 };
 </script>

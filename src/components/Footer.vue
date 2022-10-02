@@ -10,7 +10,9 @@
       <v-card-title class="justify-center hidden-xs-only text-h2">
         Create a streamlined Work Force
       </v-card-title>
-      <v-card-title class="justify-center font-weight-bold hidden-sm-and-up text-h5">
+      <v-card-title
+        class="justify-center font-weight-bold hidden-sm-and-up text-h5"
+      >
         Create a streamlined Work Force
       </v-card-title>
       <v-card-text class="text-h5 hidden-xs-only">
@@ -19,7 +21,7 @@
       <v-card-text class="hidden-sm-and-up text-subtitle-1">
         Give our app a free spin it only takes a few minutes to get used to
       </v-card-text>
-      <v-card-actions>
+      <v-card-actions class="justify-center">
         <v-btn class="black mt-4 mb-8" dark x-large to="/staff">Demo App</v-btn>
       </v-card-actions>
       <v-card-text class="text-subtitle-1">

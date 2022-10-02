@@ -1,55 +1,57 @@
 <template>
-  <v-card class="mx-auto my-12" max-width="480">
-    <v-card-title> CREATE {{ type.toUpperCase() }} </v-card-title>
-    <v-form
-      class="mx-8"
-      ref="form"
-      v-model="valid"
-      lazy-validation
-      @submit.prevent="handleSubmit"
-    >
-      <v-text-field
-        v-model="staffData.name"
-        :rules="nameRules"
-        label="Name"
-        required
-      ></v-text-field>
+  <v-row class="justify-center align-center">
+    <v-card class="mx-5 my-12" width="380">
+      <v-card-title> CREATE {{ type.toUpperCase() }} </v-card-title>
+      <v-form
+        class="mx-8"
+        ref="form"
+        v-model="valid"
+        lazy-validation
+        @submit.prevent="handleSubmit"
+      >
+        <v-text-field
+          v-model="staffData.name"
+          :rules="nameRules"
+          label="Name"
+          required
+        ></v-text-field>
 
-      <v-text-field
-        v-model="staffData.email"
-        :rules="emailRules"
-        label="E-mail"
-        required
-      ></v-text-field>
+        <v-text-field
+          v-model="staffData.email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+        ></v-text-field>
 
-      <v-select
-        v-model="staffData.gender"
-        :items="genders"
-        :rules="[(v) => !!v || 'Item is required']"
-        label="Gender"
-        required
-      ></v-select>
+        <v-select
+          v-model="staffData.gender"
+          :items="genders"
+          :rules="[(v) => !!v || 'Item is required']"
+          label="Gender"
+          required
+        ></v-select>
 
-      <v-text-field
-        v-model="staffData.phoneNumber"
-        :rules="phoneNumberRules"
-        :counter="11"
-        label="Phone Number"
-        required
-      ></v-text-field>
+        <v-text-field
+          v-model="staffData.phoneNumber"
+          :rules="phoneNumberRules"
+          :counter="11"
+          label="Phone Number"
+          required
+        ></v-text-field>
 
-      <v-text-field
-        v-model="staffData.jobTitle"
-        :rules="jobTitleRules"
-        label="Job Title"
-        required
-      ></v-text-field>
+        <v-text-field
+          v-model="staffData.jobTitle"
+          :rules="jobTitleRules"
+          label="Job Title"
+          required
+        ></v-text-field>
 
-      <v-btn class="my-8" :disabled="!valid" color="success" type="submit">
-        Submit
-      </v-btn>
-    </v-form>
-  </v-card>
+        <v-btn class="my-8" :disabled="!valid" x-large dark color="deep-purple lighten-3" type="submit">
+          Submit
+        </v-btn>
+      </v-form>
+    </v-card>
+  </v-row>
 </template>
 
 <script>

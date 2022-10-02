@@ -1,111 +1,116 @@
 <template>
-  <v-card max-width="900px" class="mx-auto px-8 bg" elevation="2">
-    <v-row class="ma-0">
-      <v-col align-self="start" class="justify-start ml-4">
-        <p class="text-subtitle-1">PROFILE IMAGE</p>
-        <v-avatar
-          class="profile avatar-center-heigth avatar-shadow"
-          color="grey"
-          size="180"
-          tile
-        >
-          <v-btn v-if="editMode" class="upload-btn" large icon>
-            <v-icon> mdi-camera </v-icon>
-          </v-btn>
-          <input
-            ref="uploader"
-            class="d-none"
-            type="file"
-            accept="image/*"
-            :change="onFileChanged"
-          />
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-          ></v-img>
-        </v-avatar>
-      </v-col>
-      <v-col class="px-0" align-self="start">
-        <v-list-item color="#0000" class="ma-0 pt-0 px-0">
-          <v-list-item-content>
-            <p class="text-subtitle-1">ROLE</p>
-            <v-select
-              v-model="staff.type"
-              class="text-h6 px-0"
-              prepend-icon="mdi-account-badge"
-              :items="employeeTypes"
-              :solo="!editMode"
-              flat
-              :readonly="!editMode"
-              :filled="editMode"
-            ></v-select>
-          </v-list-item-content>
-        </v-list-item>
-      </v-col>
-    </v-row>
-    <v-row class="ma-0">
-      <v-col>
-        <p class="ml-5 my-0 caption">NAME</p>
-        <v-text-field
-          v-model="staff.name"
-          class="text-h6 px-2"
-          :rules="nameRules"
-          :solo="!editMode"
-          flat
-          :readonly="!editMode"
-          :filled="editMode"
-        ></v-text-field>
-        <p class="ml-5 my-0 caption">JOB</p>
-        <v-text-field
-          v-model="staff.jobTitle"
-          class="text-h6 px-2"
-          :rules="jobTitleRules"
-          :solo="!editMode"
-          flat
-          :readonly="!editMode"
-          :filled="editMode"
-        ></v-text-field>
-        <p class="ml-5 my-0 caption">EMAIL</p>
-        <v-text-field
-          v-model="staff.email"
-          :rules="emailRules"
-          class="text-h6 px-2 ml-3"
-          prepend-icon="mdi-email"
-          :solo="!editMode"
-          flat
-          :readonly="!editMode"
-          :filled="editMode"
-        ></v-text-field>
-      </v-col>
-      <v-col>
-        <p class="ml-3 my-0 caption">PHONE NUMBER</p>
-        <v-text-field
-          v-model="staff.phoneNumber"
-          class="text-h6 px-2 ma-0"
-          :rules="phoneNumberRules"
-          prepend-icon="mdi-phone"
-          :solo="!editMode"
-          flat
-          :readonly="!editMode"
-          :filled="editMode"
-        ></v-text-field>
-        <p class="ml-3 my-0 caption">GENDER</p>
-        <v-select
-          v-model="staff.gender"
-          class="text-h6 px-0"
-          :rules="[(v) => !!v || 'Item is required']"
-          :items="genders"
-          :solo="!editMode"
-          flat
-          :readonly="!editMode"
-          :filled="editMode"
-        ></v-select>
-      </v-col>
-    </v-row>
-    <v-btn @click="save" class="my-8 ml-7" color="primary">
-      <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
-      {{ editMode ? "SAVE" : "EDIT" }}
-    </v-btn>
-  </v-card>
+  <v-row class="justify-center">
+    <v-sheet class="mx-5 mt-9 pa-8 rounded-lg elevation-2">
+      <v-row class="mx-0">
+        <v-col cols="12" sm="6" align-self="start" class="justify-start px-0">
+          <p class="text-subtitle-1 ma-0">PROFILE IMAGE</p>
+          <v-avatar
+            class="profile avatar-center-heigth avatar-shadow"
+            color="grey"
+            size="180"
+            tile
+          >
+            <v-btn v-if="editMode" class="upload-btn" large icon>
+              <v-icon> mdi-camera </v-icon>
+            </v-btn>
+            <input
+              ref="uploader"
+              class="d-none"
+              type="file"
+              accept="image/*"
+              :change="onFileChanged"
+            />
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
+            ></v-img>
+          </v-avatar>
+        </v-col>
+        <v-col sm="6" class="px-0" align-self="start">
+          <v-list-item color="#0000" class="pt-0 px-0">
+            <v-list-item-content>
+              <p class="text-subtitle-1">ROLE</p>
+              <v-select
+                v-model="staff.type"
+                class="text-h6 px-0"
+                prepend-icon="mdi-account-badge"
+                :items="employeeTypes"
+                :solo="!editMode"
+                flat
+                :readonly="!editMode"
+                :filled="editMode"
+              ></v-select>
+            </v-list-item-content>
+          </v-list-item>
+        </v-col>
+      </v-row>
+      <v-row class="ma-0">
+        <v-col sm="6" class="px-0" cols="12">
+          <p class="my-0 caption">NAME</p>
+          <v-text-field
+            v-model="staff.name"
+            class="text-h6 px-0"
+            prepend-icon="mdi-account-edit"
+            :rules="nameRules"
+            :solo="!editMode"
+            flat
+            :readonly="!editMode"
+            :filled="editMode"
+          ></v-text-field>
+          <p class="my-0 caption">JOB</p>
+          <v-text-field
+            v-model="staff.jobTitle"
+            class="text-h6"
+            :rules="jobTitleRules"
+            prepend-icon="mdi-briefcase"
+            :solo="!editMode"
+            flat
+            :readonly="!editMode"
+            :filled="editMode"
+          ></v-text-field>
+          <p class="my-0 caption">EMAIL</p>
+          <v-text-field
+            v-model="staff.email"
+            :rules="emailRules"
+            class="text-h6"
+            prepend-icon="mdi-email"
+            :solo="!editMode"
+            flat
+            :readonly="!editMode"
+            :filled="editMode"
+          ></v-text-field>
+        </v-col>
+        <v-col sm="6" class="px-0" cols="12">
+          <p class="my-0 caption">PHONE NUMBER</p>
+          <v-text-field
+            v-model="staff.phoneNumber"
+            class="text-h6 ma-0"
+            :rules="phoneNumberRules"
+            prepend-icon="mdi-phone"
+            :solo="!editMode"
+            flat
+            :readonly="!editMode"
+            :filled="editMode"
+          ></v-text-field>
+          <p class="my-0 caption">GENDER</p>
+          <v-select
+            v-model="staff.gender"
+            class="text-h6 px-0"
+            :rules="[(v) => !!v || 'Item is required']"
+            prepend-icon="mdi-gender-transgender"
+            :items="genders"
+            :solo="!editMode"
+            flat
+            :readonly="!editMode"
+            :filled="editMode"
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-btn x-large @click="save" class="my-4" dark color="black">
+        <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
+        {{ editMode ? "SAVE" : "EDIT" }}
+      </v-btn>
+    </v-sheet>
+  </v-row>
 </template>
 
 <script>

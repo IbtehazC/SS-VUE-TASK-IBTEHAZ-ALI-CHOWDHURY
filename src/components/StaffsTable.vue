@@ -3,20 +3,7 @@
     :headers="headersForStaff"
     :items="staffs"
     :items-per-page="5"
-    class="rounded"
-    hide-default-header
   >
-    <template v-slot:header="{ props: { headers } }">
-      <thead class="my-8">
-        <tr>
-          <th v-for="h in headersForStaff">
-            <p class="text-subtitle-2 font-weight-bold my-4">
-              {{ h.text }}
-            </p>
-          </th>
-        </tr>
-      </thead>
-    </template>
     <template v-slot:item.img="{ item }">
       <v-avatar size="32" color="grey" class="my-4">
         <v-icon dark>mdi-account-circle</v-icon>
