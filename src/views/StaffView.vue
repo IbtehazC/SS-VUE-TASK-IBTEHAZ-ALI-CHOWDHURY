@@ -1,15 +1,15 @@
 <template>
-  <StaffList />
+  <StaffDetails />
 </template>
 
 <script>
-import StaffList from "@/components/StaffList.vue";
+import StaffDetails from "@/components/StaffDetails.vue";
 
 export default {
   name: "StaffView",
   components: {
-    StaffList,
-    StaffList,
+    StaffDetails,
   },
+  props: ["id"],
 };
 </script>
