@@ -8,10 +8,10 @@
       class="text-center pt-16 pb-4"
     >
       <v-card-title class="justify-center hidden-xs-only text-h2">
-        Create a streamlined Work Force
+        <p>Create a streamlined Work Force</p>
       </v-card-title>
       <v-card-title
-        class="justify-center font-weight-bold hidden-sm-and-up text-h5"
+        class="justify-center font-weight-bold hidden-sm-and-up text-h4"
       >
         Create a streamlined Work Force
       </v-card-title>

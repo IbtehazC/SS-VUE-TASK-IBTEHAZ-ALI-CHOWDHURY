@@ -2,27 +2,30 @@
   <v-row class="justify-center align-center">
     <v-card class="mx-5 my-12" width="380">
       <v-card-title> CREATE {{ type.toUpperCase() }} </v-card-title>
-      <v-form
-        class="mx-8"
-        ref="form"
-        v-model="valid"
-        lazy-validation
-        @submit.prevent="handleSubmit"
-      >
+      <v-form class="mx-8" ref="form" v-model="valid" lazy-validation>
+        <v-row class="justify-center">
+          <v-avatar size="80" color="grey" class="my-4">
+            <v-img class="elevation-6" alt="" :src="imgUrl"></v-img>
+          </v-avatar>
+        </v-row>
+        <v-file-input
+          accept="image/png, image/jpeg, image/bmp"
+          prepend-icon="mdi-camera"
+          label="Profile Picture"
+          @change="saveImg"
+        ></v-file-input>
         <v-text-field
           v-model="staffData.name"
           :rules="nameRules"
           label="Name"
           required
         ></v-text-field>
-
         <v-text-field
           v-model="staffData.email"
           :rules="emailRules"
           label="E-mail"
           required
         ></v-text-field>
-
         <v-select
           v-model="staffData.gender"
           :items="genders"
@@ -30,7 +33,6 @@
           label="Gender"
           required
         ></v-select>
-
         <v-text-field
           v-model="staffData.phoneNumber"
           :rules="phoneNumberRules"
@@ -46,7 +48,13 @@
           required
         ></v-text-field>
 
-        <v-btn class="my-8" :disabled="!valid" x-large dark color="deep-purple lighten-3" type="submit">
+        <v-btn
+          class="mr-4 mt-4 mb-8"
+          color="deep-purple lighten-3"
+          :disabled="!valid"
+          x-large
+          @click="handleSubmit"
+        >
           Submit
         </v-btn>
       </v-form>
@@ -60,7 +68,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      valid: true,
+      valid: false,
       staffData: {
         name: "",
         email: "",
@@ -68,7 +76,8 @@ export default {
         phoneNumber: "",
         jobTitle: "",
       },
-      genders: ["Male", "Female", "I don't want to disclose"],
+      imgUrl: "",
+      genders: ["Male", "Female"],
       nameRules: [
         (v) => !!v || "Name is required",
         (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
@@ -89,11 +98,33 @@ export default {
   },
   props: ["type"],
   methods: {
+    validate() {
+      return this.$refs.form.validate();
+    },
     ...mapActions(["addStaff"]),
+    saveImg(img) {
+      if (img) {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          this.imgUrl = reader.result;
+        });
+        reader.readAsDataURL(img);
+      }
+      this.imgUrl = "";
+    },
     handleSubmit() {
-      this.type[0].toUpperCase;
-      const newStaff = { ...this.staffData, type: this.type };
-      this.addStaff(newStaff);
+      const valid = this.validate();
+      if (valid) {
+        const newStaff = {
+          ...this.staffData,
+          type: this.type,
+          img: this.imgUrl,
+        };
+        this.addStaff(newStaff);
+        this.$router.push({
+          name: "staff",
+        });
+      }
     },
   },
 };

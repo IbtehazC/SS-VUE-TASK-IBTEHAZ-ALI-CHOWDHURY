@@ -1,15 +1,31 @@
 <template>
-  <v-app-bar dark color="deep-purple lighten-3" elevate-on-scroll>
-    <v-toolbar-title class="text-h6">STAFF Management</v-toolbar-title>
+  <v-app-bar dark color="deep-purple lighten-3" app elevate-on-scroll>
+    <v-toolbar-title>StaffM</v-toolbar-title>
     <v-spacer />
 
     <v-toolbar-items class="hidden-sm-and-up">
-      <v-btn
-        depressed
-        color="deep-purple lighten-3"
-        @click.stop="drawer = !drawer"
-        >Menu</v-btn
-      >
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            depressed
+            color="deep-purple lighten-3"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Menu
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            router
+            :to="item.link"
+          >
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item> </v-list
+      ></v-menu>
     </v-toolbar-items>
 
     <v-toolbar-items class="hidden-xs-only">
@@ -20,7 +36,7 @@
         dark
         color="deep-purple lighten-3"
         to="/staff"
-        >Demo</v-btn
+        >Demo App</v-btn
       >
     </v-toolbar-items>
   </v-app-bar>
@@ -30,13 +46,10 @@
 export default {
   data() {
     return {
-      drawer: false,
       items: [
         { title: "Home", link: "/" },
         { title: "Try Out", link: "/staff" },
       ],
-      name: "staff",
-      isApp: this.name === this.$route.name ? truth : false,
     };
   },
 };

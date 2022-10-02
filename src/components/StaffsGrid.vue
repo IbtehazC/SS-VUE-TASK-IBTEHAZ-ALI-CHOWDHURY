@@ -1,5 +1,5 @@
 <template>
-  <v-row class="grey lighten-3">
+  <v-row class="grey lighten-3 justify-center">
     <v-card
       width="270"
       v-for="staff in staffs"
@@ -13,37 +13,42 @@
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
-          <v-list class="py-0 my-0">
-            <v-list-item
-              class="py-0 my-0"
-              v-for="(item, index) in items"
-              :key="index"
-              link
-            >
-              {{ item.title }}
+          <v-list class="pa-0 ma-0">
+            <v-list-item class="pa-0 ma-0">
+              <v-btn
+                block
+                depressed
+                color="white"
+                @click="goToEmployeePage(staff)"
+                >Edit</v-btn
+              >
             </v-list-item>
           </v-list>
         </v-menu>
       </v-card-actions>
       <div class="text-center my-2">
         <v-avatar size="80" center>
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-          ></v-img>
+          <v-img :src="staff.img"></v-img>
         </v-avatar>
       </div>
-      <v-card-title class="justify-center">{{ staff.name }}</v-card-title>
+      <v-card-title class="justify-center">
+        <router-link :to="`/staff/${staff.id}`">
+          <div class="text-body-1 font-weight-medium links_table">
+            {{ staff.name }}
+          </div>
+        </router-link>
+      </v-card-title>
       <v-card-text class="grey--text text-center py-2">
         {{ staff.jobTitle }}
       </v-card-text>
       <v-card-text>
         <v-card class="elevation-0 brown lighten-5" outlined>
-          <v-card-text class="py-2">
+          <v-card-text class="py-2 px-1 text-center">
             <v-icon size="20" class="mr-2">mdi-email</v-icon>
             {{ staff.email }}
           </v-card-text>
           <v-divider />
-          <v-card-text class="py-2">
+          <v-card-text class="py-2 px-1 text-center">
             <v-icon size="20" class="mr-2">mdi-phone</v-icon>
             {{ staff.phoneNumber }}
           </v-card-text>

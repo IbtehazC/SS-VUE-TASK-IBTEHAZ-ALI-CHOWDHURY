@@ -5,18 +5,25 @@
         <v-row class="justify-center align-center">
           <v-col cols="12" md="5">
             <div class="hidden-xs-only ml-8">
-              <h5 class="text-h2">Unlock growth with a flexible work force</h5>
-              <p class="text-subtitle-1">
-                With automated process to manage staffs we offer you a easy and
-                flexible solutions for your HR needs
+              <h5 class="text-h2">I'm StaffM</h5>
+              <h4 class="text-h3">
+                an Employee Management Software That Keeps You Organized!
+              </h4>
+              <p class="text-h6 mt-2">
+                Track and organize your employee data with ease with our
+                easy-to-use web app. Get StaffM and make your workplace work for
+                you.
               </p>
               <v-btn class="black" to="/staff" dark x-large>Demo App</v-btn>
             </div>
             <div class="hidden-sm-and-up my-10">
-              <h5 class="text-h4">Unlock growth with a flexible work force</h5>
+              <h5 class="text-h4">
+                Employee Management App That Keeps You Organized!
+              </h5>
               <p class="text-caption">
-                With automated process to manage staffs we offer you a easy and
-                flexible solutions for your HR needs
+                Track and organize your employee data with ease with our
+                easy-to-use web app. Get StaffM and make your workplace work for
+                you.
               </p>
               <v-btn class="black" to="/staff" dark large>Demo App</v-btn>
             </div>
@@ -32,10 +39,10 @@
     <v-container class="mt-16">
       <v-row class="hidden-xs-only justify-center align-center mx-16 my-16">
         <v-col cols="12" md="6">
-          <div class="ml-8">
+          <div class="ml-8 mb-16">
             <h5 class="text-h3">
-              Workforce also helps you grow with automated worker hiring and
-              management
+              StaffM offers a comprehensive suite of employee management
+              features.
             </h5>
           </div>
         </v-col>
@@ -56,8 +63,8 @@
         <v-col cols="12" md="6">
           <div class="my-10">
             <h5 class="text-h5">
-              Workforce also helps you grow with automated worker hiring and
-              management
+              StaffM offers a comprehensive suite of employee management
+              features.
             </h5>
           </div>
         </v-col>
@@ -81,23 +88,21 @@
           </v-col>
           <v-spacer />
           <v-col cols="6">
-            <h5 class="text-h2">Unlock growth with a flexible work force</h5>
-            <p class="text-subtitle-1">
-              With automated process to manage staffs we offer you a easy and
-              flexible solutions for your HR needs
-            </p>
+            <h5 class="text-h3">
+              With its easy-to-use interface and powerful features, StaffM helps
+              businesses manage their employees more effectively and
+              efficiently.
+            </h5>
           </v-col>
         </v-row>
       </v-card>
       <v-card color="#EFEFEF" class="hidden-sm-and-up my-8 mx-8 rounded-lg">
         <v-sheet color="#EFEFEF" class="py-4 px-4 rounded-b-0">
           <h5 class="text-h5">
-            Spend less time and money on freelancers and recruiters
+            With its easy-to-use interface and powerful features, WorkforcePro
+            helps businesses manage their employees more effectively and
+            efficiently.
           </h5>
-          <p class="text-caption">
-            With automated process to manage staffs we offer you a easy and
-            flexible solutions for your HR needs
-          </p>
         </v-sheet>
         <v-img class="mx-4 mb-8" src="/Performance-amico.png"></v-img>
       </v-card>
@@ -118,8 +123,8 @@
                 max-width="500"
               >
                 <v-card-text class="text-h5 font-weight-bold">
-                  "Turns out semicolon-less style is easier and safer in TS
-                  because most gotcha edge cases are type invalid as well."
+                  "StaffM has helped me manage my startup business smoothly. The
+                  interface is very intuitive and easy to use."
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>

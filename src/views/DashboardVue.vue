@@ -18,13 +18,33 @@
       </v-row>
       <v-divider></v-divider>
       <v-row class="my-4 mx-4 justify-space-between align center">
-        <p class="my-0 text-subtitle-1 font-weight-bold">No. of Staffs: 100</p>
+        <p class="my-2 text-subtitle-1 font-weight-bold">
+          No. of Staffs:
+          <v-chip class="ma-1 deep-purple lighten-3 white--text" label> {{ totalStaffs }} </v-chip>
+        </p>
         <div class="d-flex">
-          <router-link to="/create/employee" tag="button">
-            <v-btn outlined color="deep-purple lighten-3" large right>
-              <v-icon left>mdi-plus</v-icon>Add
-            </v-btn>
-          </router-link>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="deep-purple lighten-3"
+                outlined
+                large
+                v-bind="attrs"
+                v-on="on"
+              >
+                ADD STAFF
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="item in linkItems"
+                :key="item.title"
+                router
+                :to="item.link"
+              >
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item> </v-list
+          ></v-menu>
           <div class="ml-4">
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
@@ -38,14 +58,14 @@
                   {{ menuItems[selectedItem] }}
                 </v-btn>
               </template>
-              <v-list-item-group active-class="border" color="brown">
-                <v-list-item v-for="(item, i) in menuItems" :key="i">
-                  <v-list-item-content @click="selectedItem = i">
-                    <v-list-item-title>{{ item }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-menu>
+              <v-list>
+                <v-list-item v-for="(item, i) in menuItems" :key="i" link>
+                  <v-list-item-title
+                    @click="selectedItem = i"
+                    v-text="item"
+                  ></v-list-item-title>
+                </v-list-item> </v-list
+            ></v-menu>
           </div>
         </div>
       </v-row>
@@ -55,7 +75,7 @@
           <StaffsGrid v-if="selectedItem == 1" :staffs="admins" />
         </v-tab-item>
         <v-tab-item>
-          <StaffsList v-if="selectedItem == 0" :staffs="employees" />
+          <StaffsTable v-if="selectedItem == 0" :staffs="employees" />
           <StaffsGrid v-if="selectedItem == 1" :staffs="employees" />
         </v-tab-item>
       </v-tabs-items>
@@ -65,7 +85,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import StaffsList from "@/components/StaffsList.vue";
 import StaffsGrid from "@/components/StaffsGrid.vue";
 import StaffsTable from "@/components/StaffsTable.vue";
 
@@ -77,18 +96,19 @@ export default {
       selectedItem: 0,
       items: ["admin", "employee"],
       menuItems: ["Table View", "Grid View"],
-      isTableView: true,
+      linkItems: [
+        { title: "Employee", link: "/create/employee" },
+        { title: "Admin", link: "/create/admin" },
+      ],
     };
   },
   computed: {
     ...mapGetters({
       employees: "getEmployees",
       admins: "getAdmins",
+      totalStaffs: "getStaffCount",
     }),
   },
-  methods: {
-    setTableView(bool) {},
-  },
-  components: { StaffsList, StaffsGrid, StaffsTable },
+  components: { StaffsGrid, StaffsTable },
 };
 </script>

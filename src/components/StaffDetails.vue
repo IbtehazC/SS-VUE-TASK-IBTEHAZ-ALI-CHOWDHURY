@@ -4,26 +4,20 @@
       <v-row class="mx-0">
         <v-col cols="12" sm="6" align-self="start" class="justify-start px-0">
           <p class="text-subtitle-1 ma-0">PROFILE IMAGE</p>
-          <v-avatar
-            class="profile avatar-center-heigth avatar-shadow"
-            color="grey"
-            size="180"
-            tile
-          >
-            <v-btn v-if="editMode" class="upload-btn" large icon>
-              <v-icon> mdi-camera </v-icon>
-            </v-btn>
-            <input
-              ref="uploader"
-              class="d-none"
-              type="file"
-              accept="image/*"
-              :change="onFileChanged"
-            />
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-            ></v-img>
-          </v-avatar>
+          <v-row class="justify-start ma-0">
+            <v-avatar size="160" tile color="grey" class="my-4">
+              <v-img class="elevation-6" alt="" :src="staff.img"></v-img>
+            </v-avatar>
+          </v-row>
+          <v-file-input
+            v-if="editMode"
+            accept="image/png, image/jpeg, image/bmp"
+            prepend-icon="mdi-camera"
+            label="Profile Picture"
+            @change="saveImg"
+            solo
+            flat
+          ></v-file-input>
         </v-col>
         <v-col sm="6" class="px-0" align-self="start">
           <v-list-item color="#0000" class="pt-0 px-0">
@@ -109,15 +103,36 @@
         <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
         {{ editMode ? "SAVE" : "EDIT" }}
       </v-btn>
+      <v-btn x-large color="red" class="ml-4" dark @click.stop="dialog = true">
+        Delete
+      </v-btn>
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="text-h5">
+            Are you sure you want to delete {{ staff.name }}'s entry?
+          </v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="deleteStaff(staff.id)">
+              Agree
+            </v-btn>
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Disagree
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-sheet>
   </v-row>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      genders: ["Male", "Female", "I don't want to disclose"],
+      genders: ["Male", "Female"],
       editMode: false,
       employeeTypes: ["admin", "employee"],
       staff: {
@@ -127,7 +142,7 @@ export default {
         email: "",
         phoneNumber: "",
         jobTitle: "",
-        gender: "I don't want to disclose",
+        gender: "",
         type: "employee",
       },
       nameRules: [
@@ -146,21 +161,37 @@ export default {
           "Phone Number must be less than or equals to 11 digits",
       ],
       jobTitleRules: [(v) => !!v || "Job title is required"],
+      dialog: false,
     };
   },
   props: ["id"],
   methods: {
+    validate() {
+      return this.$refs.form.validate();
+    },
     save() {
       this.editMode = !this.editMode;
-      if (!this.editMode) {
+      if (!this.editMode && this.validate()) {
         alert("Saved successfully");
         this.$store.dispatch("editStaff", this.staff);
       }
     },
-    onFileChanged(e) {
-      this.selectedFile = e.target.files[0];
+    saveImg(img) {
+      if (img) {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          this.staff.img = reader.result;
+        });
+        reader.readAsDataURL(img);
+      }
     },
-    getStaffData() {},
+    deleteStaff(id) {
+      alert("Deleted successfully");
+      this.$store.dispatch("deleteStaff", id);
+      this.$router.push({
+        name: "staff",
+      });
+    },
   },
   created() {
     this.$store
