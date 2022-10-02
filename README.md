@@ -1,19 +1,11 @@
 # ss-vue-task-ibtehaz-ali-chowdhury
 
-## Project setup
+## To run the project
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### You can also visit the hosted app
+See [Link](https://ss-vue-task-ibtehaz-ali-chowdhury.pages.dev/#/).
