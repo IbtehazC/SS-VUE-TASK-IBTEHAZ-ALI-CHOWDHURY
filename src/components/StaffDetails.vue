@@ -1,128 +1,154 @@
 <template>
   <v-row class="justify-center">
     <v-sheet class="mx-5 mt-9 pa-8 rounded-lg elevation-2">
-      <v-row class="mx-0">
-        <v-col cols="12" sm="6" align-self="start" class="justify-start px-0">
-          <p class="text-subtitle-1 ma-0">PROFILE IMAGE</p>
-          <v-row class="justify-start ma-0">
-            <v-avatar size="160" tile color="grey" class="my-4">
-              <v-img class="elevation-6" alt="" :src="staff.img"></v-img>
-            </v-avatar>
-          </v-row>
-          <v-file-input
-            v-if="editMode"
-            accept="image/png, image/jpeg, image/bmp"
-            prepend-icon="mdi-camera"
-            label="Profile Picture"
-            @change="saveImg"
-            solo
-            flat
-          ></v-file-input>
-        </v-col>
-        <v-col sm="6" class="px-0" align-self="start">
-          <v-list-item color="#0000" class="pt-0 px-0">
-            <v-list-item-content>
-              <p class="text-subtitle-1">ROLE</p>
-              <v-select
-                v-model="staff.type"
-                class="text-h6 px-0"
-                prepend-icon="mdi-account-badge"
-                :items="employeeTypes"
-                :solo="!editMode"
-                flat
-                :readonly="!editMode"
-                :filled="editMode"
-              ></v-select>
-            </v-list-item-content>
-          </v-list-item>
-        </v-col>
-      </v-row>
-      <v-row class="ma-0">
-        <v-col sm="6" class="px-0" cols="12">
-          <p class="my-0 caption">NAME</p>
-          <v-text-field
-            v-model="staff.name"
-            class="text-h6 px-0"
-            prepend-icon="mdi-account-edit"
-            :rules="nameRules"
-            :solo="!editMode"
-            flat
-            :readonly="!editMode"
-            :filled="editMode"
-          ></v-text-field>
-          <p class="my-0 caption">JOB</p>
-          <v-text-field
-            v-model="staff.jobTitle"
-            class="text-h6"
-            :rules="jobTitleRules"
-            prepend-icon="mdi-briefcase"
-            :solo="!editMode"
-            flat
-            :readonly="!editMode"
-            :filled="editMode"
-          ></v-text-field>
-          <p class="my-0 caption">EMAIL</p>
-          <v-text-field
-            v-model="staff.email"
-            :rules="emailRules"
-            class="text-h6"
-            prepend-icon="mdi-email"
-            :solo="!editMode"
-            flat
-            :readonly="!editMode"
-            :filled="editMode"
-          ></v-text-field>
-        </v-col>
-        <v-col sm="6" class="px-0" cols="12">
-          <p class="my-0 caption">PHONE NUMBER</p>
-          <v-text-field
-            v-model="staff.phoneNumber"
-            class="text-h6 ma-0"
-            :rules="phoneNumberRules"
-            prepend-icon="mdi-phone"
-            :solo="!editMode"
-            flat
-            :readonly="!editMode"
-            :filled="editMode"
-          ></v-text-field>
-          <p class="my-0 caption">GENDER</p>
-          <v-select
-            v-model="staff.gender"
-            class="text-h6 px-0"
-            :rules="[(v) => !!v || 'Item is required']"
-            prepend-icon="mdi-gender-transgender"
-            :items="genders"
-            :solo="!editMode"
-            flat
-            :readonly="!editMode"
-            :filled="editMode"
-          ></v-select>
-        </v-col>
-      </v-row>
-      <v-btn x-large @click="save" class="my-4" dark color="black">
-        <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
-        {{ editMode ? "SAVE" : "EDIT" }}
-      </v-btn>
-      <v-btn x-large color="red" class="ml-4" dark @click.stop="dialog = true">
-        Delete
-      </v-btn>
-      <v-dialog v-model="dialog" max-width="290">
-        <v-card>
-          <v-card-title class="text-h5">
-            Are you sure you want to delete {{ staff.name }}'s entry?
-          </v-card-title>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="deleteStaff(staff.id)">
-              Agree
-            </v-btn>
-            <v-btn color="green darken-1" text @click="dialog = false">
-              Disagree
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <v-form ref="form" v-model="valid" lazy-validation>
+        <v-row class="mx-0">
+          <v-col cols="12" sm="6" align-self="start" class="justify-start px-0">
+            <p class="text-subtitle-1 ma-0">PROFILE IMAGE</p>
+            <v-row class="justify-start ma-0">
+              <v-avatar size="160" tile color="grey" class="my-4">
+                <v-img class="elevation-6" alt="" :src="staff.img"></v-img>
+              </v-avatar>
+            </v-row>
+            <v-file-input
+              v-if="editMode"
+              accept="image/png, image/jpeg, image/bmp"
+              prepend-icon="mdi-camera"
+              label="Profile Picture"
+              @change="saveImg"
+              solo
+              flat
+            ></v-file-input>
+          </v-col>
+          <v-col sm="6" class="px-0" align-self="start">
+            <v-list-item color="#0000" class="pt-0 px-0">
+              <v-list-item-content>
+                <p class="text-subtitle-1">ROLE</p>
+                <v-select
+                  v-model="staff.type"
+                  class="text-h6 px-0"
+                  prepend-icon="mdi-account-badge"
+                  :items="employeeTypes"
+                  :solo="!editMode"
+                  flat
+                  :readonly="!editMode"
+                  :filled="editMode"
+                ></v-select>
+              </v-list-item-content>
+            </v-list-item>
+          </v-col>
+        </v-row>
+        <v-row class="ma-0">
+          <v-col sm="6" class="px-0" cols="12">
+            <p class="my-0 caption">NAME</p>
+            <v-text-field
+              v-model="staff.name"
+              class="text-h6 px-0"
+              prepend-icon="mdi-account-edit"
+              :rules="nameRules"
+              :solo="!editMode"
+              flat
+              :readonly="!editMode"
+              :filled="editMode"
+            ></v-text-field>
+            <p class="my-0 caption">JOB</p>
+            <v-text-field
+              v-model="staff.jobTitle"
+              class="text-h6"
+              :rules="jobTitleRules"
+              prepend-icon="mdi-briefcase"
+              :solo="!editMode"
+              flat
+              :readonly="!editMode"
+              :filled="editMode"
+            ></v-text-field>
+            <p class="my-0 caption">EMAIL</p>
+            <v-text-field
+              v-model="staff.email"
+              :rules="emailRules"
+              class="text-h6"
+              prepend-icon="mdi-email"
+              :solo="!editMode"
+              flat
+              :readonly="!editMode"
+              :filled="editMode"
+            ></v-text-field>
+          </v-col>
+          <v-col sm="6" class="px-0" cols="12">
+            <p class="my-0 caption">PHONE NUMBER</p>
+            <v-text-field
+              v-model="staff.phoneNumber"
+              class="text-h6 ma-0"
+              :rules="phoneNumberRules"
+              prepend-icon="mdi-phone"
+              :solo="!editMode"
+              flat
+              :readonly="!editMode"
+              :filled="editMode"
+            ></v-text-field>
+            <p class="my-0 caption">GENDER</p>
+            <v-select
+              v-model="staff.gender"
+              class="text-h6 px-0"
+              :rules="[(v) => !!v || 'Item is required']"
+              prepend-icon="mdi-gender-transgender"
+              :items="genders"
+              :solo="!editMode"
+              flat
+              :readonly="!editMode"
+              :filled="editMode"
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row class="justify-between mb-8">
+          <v-btn x-large :disabled="!valid" @click="save" dark color="black">
+            <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
+            {{ editMode ? "SAVE" : "EDIT" }}
+          </v-btn>
+          <v-btn
+            x-large
+            color="red"
+            class="ml-4"
+            dark
+            @click.stop="dialog = true"
+          >
+            Delete
+          </v-btn>
+        </v-row>
+        <v-dialog v-model="dialog" max-width="290">
+          <v-card>
+            <v-card-title class="text-h5">
+              Are you sure you want to delete {{ staff.name }}'s entry?
+            </v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="deleteStaff(staff.id)">
+                Agree
+              </v-btn>
+              <v-btn color="green darken-1" text @click="dialog = false">
+                Disagree
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-form>
     </v-sheet>
+    <v-snackbar color="green" v-model="showEditSnackbar">
+      Sucessfully Edited
+      <template v-slot:action="{ attrs }">
+        <v-btn text v-bind="attrs" @click="showEditSnackbar = false">
+          <v-icon fab>mdi-close-circle</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <v-snackbar color="green" v-model="showDeleteSnackbar">
+      Sucessfully Edited
+      <template v-slot:action="{ attrs }">
+        <v-btn text v-bind="attrs" @click="showDelteSnackbar = false">
+          <v-icon fab>mdi-close-circle</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-row>
 </template>
 
@@ -162,6 +188,9 @@ export default {
       ],
       jobTitleRules: [(v) => !!v || "Job title is required"],
       dialog: false,
+      valid: true,
+      showEditSnackbar: false,
+      showDeleteSnackbar: false,
     };
   },
   props: ["id"],
@@ -172,8 +201,8 @@ export default {
     save() {
       this.editMode = !this.editMode;
       if (!this.editMode && this.validate()) {
-        alert("Saved successfully");
         this.$store.dispatch("editStaff", this.staff);
+        this.showEditSnackbar = true;
       }
     },
     saveImg(img) {
@@ -186,11 +215,15 @@ export default {
       }
     },
     deleteStaff(id) {
-      alert("Deleted successfully");
+      this.showDeleteSnackbar = true;
       this.$store.dispatch("deleteStaff", id);
       this.$router.push({
         name: "staff",
       });
+    },
+    reset() {
+      this.isSuccess = false;
+      this.showSnackbar = false;
     },
   },
   created() {

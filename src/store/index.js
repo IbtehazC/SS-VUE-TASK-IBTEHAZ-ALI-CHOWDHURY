@@ -148,6 +148,9 @@ export default new Vuex.Store({
     getStaffCount(state) {
       return state.staffs.length;
     },
+    getStaffByEmail: (state) => (email) => {
+      return state.staffs.find((todo) => todo.email === email);
+    },
   },
   mutations: {
     setStaff(state, payload) {
@@ -157,7 +160,6 @@ export default new Vuex.Store({
   actions: {
     addStaff({ commit }, staffData) {
       const newStaffsArray = [staffData, ...this.state.staffs];
-      console.log(newStaffsArray);
       commit("setStaff", newStaffsArray);
     },
     editStaff({ commit }, staffData) {

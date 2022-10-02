@@ -4,7 +4,7 @@
       width="270"
       v-for="staff in staffs"
       :key="staff.id"
-      class="mx-4 justify-center py-2 my-8 rounded-lg elevation-2"
+      class="mx-4 justify-center py-2 my-8 rounded-lg"
     >
       <v-card-actions class="justify-end">
         <v-menu offset-y>
@@ -32,7 +32,7 @@
         </v-avatar>
       </div>
       <v-card-title class="justify-center">
-        <router-link :to="`/staff/${staff.id}`">
+        <router-link style="text-decoration: none; color: black" :to="`/staff/${staff.id}`">
           <div class="text-body-1 font-weight-medium links_table">
             {{ staff.name }}
           </div>

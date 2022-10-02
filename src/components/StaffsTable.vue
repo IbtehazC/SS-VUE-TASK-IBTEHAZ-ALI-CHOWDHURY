@@ -7,7 +7,7 @@
     :custom-filter="filterOnlyText"
   >
     <template v-slot:top>
-      <v-text-field v-model="search" label="Search" class="mx-4"></v-text-field>
+      <v-text-field prepend-icon="mdi-magnify" v-model="search" label="Search" class="mx-4"></v-text-field>
     </template>
     <template v-slot:item.img="{ item }">
       <v-avatar v-if="item.img != null" size="48" color="grey" class="my-4">
@@ -18,7 +18,7 @@
       </v-avatar>
     </template>
     <template v-slot:item.name="{ item }">
-      <router-link :to="`/staff/${item.id}`">
+      <router-link style="text-decoration: none; color: black" :to="`/staff/${item.id}`">
         <div class="text-body-1 font-weight-medium links_table">
           {{ item.name }}
         </div>
