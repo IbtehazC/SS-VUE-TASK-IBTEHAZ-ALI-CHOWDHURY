@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { uuid } from "vue-uuid";
 import { mapActions } from "vuex";
 
 export default {
@@ -119,6 +120,7 @@ export default {
           ...this.staffData,
           type: this.type,
           img: this.imgUrl,
+          id: uuid.v4(),
         };
         this.addStaff(newStaff);
         this.$router.push({

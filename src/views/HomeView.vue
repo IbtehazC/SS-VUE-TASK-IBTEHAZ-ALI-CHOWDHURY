@@ -93,6 +93,12 @@
               businesses manage their employees more effectively and
               efficiently.
             </h5>
+            <p>
+              Since its launch, StaffM has helped thousands of businesses save
+              time and money by simplifying their employee management workflow.
+              We set out to create a solution that would streamline of processes
+              for businesses of all sizes.
+            </p>
           </v-col>
         </v-row>
       </v-card>
@@ -103,6 +109,12 @@
             helps businesses manage their employees more effectively and
             efficiently.
           </h5>
+          <p>
+            Since its launch, StaffM has helped thousands of businesses save
+            time and money by simplifying their employee management workflow. We
+            set out to create a solution that would streamline of processes for
+            businesses of all sizes.
+          </p>
         </v-sheet>
         <v-img class="mx-4 mb-8" src="/Performance-amico.png"></v-img>
       </v-card>
