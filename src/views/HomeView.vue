@@ -10,18 +10,19 @@
                 an Employee Management Software That Keeps You Organized!
               </h4>
               <p class="text-h6 mt-2">
-                Track and organize your employee data with ease with our
+                Track and organize your employee data with our
                 easy-to-use web app. Get StaffM and make your workplace work for
                 you.
               </p>
               <v-btn class="black mb-16" to="/staff" dark x-large>Demo App</v-btn>
             </div>
             <div class="hidden-sm-and-up my-10">
+              <h5 class="text-h4">I'm StaffM</h5>
               <h5 class="text-h4">
-                Employee Management App That Keeps You Organized!
+                an Employee Management App That Keeps You Organized!
               </h5>
               <p class="text-caption">
-                Track and organize your employee data with ease with our
+                Track and organize your employee data with our
                 easy-to-use web app. Get StaffM and make your workplace work for
                 you.
               </p>
