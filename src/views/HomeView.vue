@@ -5,7 +5,7 @@
         <v-row class="justify-center align-center">
           <v-col cols="12" md="5">
             <div class="hidden-xs-only ml-8">
-              <h5 class="text-h2">I'm StaffM</h5>
+              <h5 class="text-h2">I am StaffM</h5>
               <h4 class="text-h3">
                 an Employee Management Software That Keeps You Organized!
               </h4>
@@ -17,7 +17,7 @@
               <v-btn class="black mb-16" to="/staff" dark x-large>Demo App</v-btn>
             </div>
             <div class="hidden-sm-and-up my-10">
-              <h5 class="text-h4">I'm StaffM</h5>
+              <h5 class="text-h4">I am StaffM</h5>
               <h5 class="text-h4">
                 an Employee Management App That Keeps You Organized!
               </h5>
@@ -50,12 +50,12 @@
         <v-col cols="12" md="3">
           <div class="ml-8">
             <h5 class="text-h1 text-center">25k+</h5>
-            <p class="text-subtitle-1 text-center">Users</p>
+            <p class="text-subtitle-1 text-center">User Reviews</p>
           </div>
         </v-col>
         <v-col cols="12" md="3">
           <div class="ml-8">
-            <h5 class="text-h1 text-center">25k+</h5>
+            <h5 class="text-h1 text-center">1.5k+</h5>
             <p class="text-subtitle-1 text-center">Users</p>
           </div>
         </v-col>
@@ -71,8 +71,8 @@
         </v-col>
         <v-col cols="12" md="3">
           <div class="my-10 mx-4">
-            <h5 class="text-h3 text-center">1.5k+</h5>
-            <p class="text-caption text-center">User Ratings</p>
+            <h5 class="text-h3 text-center">25k+</h5>
+            <p class="text-caption text-center">User Reviews</p>
           </div>
         </v-col>
         <v-col cols="12" md="3">
