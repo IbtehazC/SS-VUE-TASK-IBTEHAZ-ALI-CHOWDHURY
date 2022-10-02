@@ -1,6 +1,10 @@
 <template>
   <v-app-bar dark color="deep-purple lighten-3" app elevate-on-scroll>
-    <v-toolbar-title>StaffM</v-toolbar-title>
+    <v-toolbar-title>
+      <router-link style="text-decoration: none; color: white" to="/">
+        StaffM
+      </router-link>
+    </v-toolbar-title>
     <v-spacer />
 
     <v-toolbar-items class="hidden-sm-and-up">

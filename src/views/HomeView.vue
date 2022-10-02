@@ -1,6 +1,6 @@
 <template>
   <v-sheet>
-    <v-sheet color="deep-purple lighten-3 px-8">
+    <v-sheet color="deep-purple lighten-3 px-6">
       <v-container mx-auto>
         <v-row class="justify-center align-center">
           <v-col cols="12" md="5">

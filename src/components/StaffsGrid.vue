@@ -32,7 +32,7 @@
         </v-avatar>
       </div>
       <v-card-title class="justify-center">
-        <router-link :to="`/staff/${staff.id}`">
+        <router-link style="text-decoration: none; color: black" :to="`/staff/${staff.id}`">
           <div class="text-body-1 font-weight-medium links_table">
             {{ staff.name }}
           </div>

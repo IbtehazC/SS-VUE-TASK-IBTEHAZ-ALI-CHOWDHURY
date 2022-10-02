@@ -18,7 +18,7 @@
       </v-avatar>
     </template>
     <template v-slot:item.name="{ item }">
-      <router-link :to="`/staff/${item.id}`">
+      <router-link style="text-decoration: none; color: black" :to="`/staff/${item.id}`">
         <div class="text-body-1 font-weight-medium links_table">
           {{ item.name }}
         </div>

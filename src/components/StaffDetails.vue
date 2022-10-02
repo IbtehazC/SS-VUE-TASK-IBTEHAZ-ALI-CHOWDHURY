@@ -99,13 +99,21 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-btn x-large @click="save" class="my-4" dark color="black">
-        <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
-        {{ editMode ? "SAVE" : "EDIT" }}
-      </v-btn>
-      <v-btn x-large color="red" class="ml-4" dark @click.stop="dialog = true">
-        Delete
-      </v-btn>
+      <v-row class="justify-between mb-8">
+        <v-btn x-large @click="save" dark color="black">
+          <v-icon size="16" class="mr-2"> mdi-pencil </v-icon>
+          {{ editMode ? "SAVE" : "EDIT" }}
+        </v-btn>
+        <v-btn
+          x-large
+          color="red"
+          class="ml-4"
+          dark
+          @click.stop="dialog = true"
+        >
+          Delete
+        </v-btn>
+      </v-row>
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
           <v-card-title class="text-h5">
