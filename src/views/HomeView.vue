@@ -10,18 +10,19 @@
                 an Employee Management Software That Keeps You Organized!
               </h4>
               <p class="text-h6 mt-2">
-                Track and organize your employee data with ease with our
+                Track and organize your employee data with our
                 easy-to-use web app. Get StaffM and make your workplace work for
                 you.
               </p>
-              <v-btn class="black" to="/staff" dark x-large>Demo App</v-btn>
+              <v-btn class="black mb-16" to="/staff" dark x-large>Demo App</v-btn>
             </div>
             <div class="hidden-sm-and-up my-10">
+              <h5 class="text-h4">I'm StaffM</h5>
               <h5 class="text-h4">
-                Employee Management App That Keeps You Organized!
+                an Employee Management App That Keeps You Organized!
               </h5>
               <p class="text-caption">
-                Track and organize your employee data with ease with our
+                Track and organize your employee data with our
                 easy-to-use web app. Get StaffM and make your workplace work for
                 you.
               </p>
@@ -91,7 +92,7 @@
             <h5 class="text-h3">
               Do you want a more organized and efficient workplace?
             </h5>
-            <p class="text-subtitle-2">
+            <p class="text-subtitle-2 mr-4">
               With its easy-to-use interface and powerful features, StaffM helps
               businesses manage their employees more effectively and
               efficiently. Since its launch, StaffM has helped thousands of
@@ -106,7 +107,7 @@
           <h5 class="text-h5">
             Do you want a more organized and efficient workplace?
           </h5>
-          <p class="text-body-1">
+          <p class="text-caption">
             With its easy-to-use interface and powerful features, StaffM helps
             businesses manage their employees more effectively and efficiently.
             Since its launch, StaffM has helped thousands of businesses save
@@ -127,7 +128,7 @@
           <v-sheet height="100%">
             <v-row class="fill-height" align="center" justify="center">
               <v-card
-                class="mx-auto py-12 px-8"
+                class="mx-auto rounde-lg py-12 px-8"
                 color="#FED0AC"
                 max-width="500"
               >
@@ -196,7 +197,7 @@
                 max-width="500"
               >
                 <v-card-text class="text-h5 font-weight-bold">
-                  "StaffM has helped a lot to jum start my business."
+                  "StaffM has helped a lot to jump start my business."
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>
