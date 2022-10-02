@@ -57,6 +57,23 @@
         >
           Submit
         </v-btn>
+        <v-snackbar v-if="isSuccess" color="green" v-model="showSnackbar">
+          Successfully created {{ type }} with name {{ staffData.name }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn text v-bind="attrs" @click="navigateToStaffPage">
+              <v-icon fab>mdi-close-circle</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
+        <v-snackbar v-else color="red" v-model="showSnackbar">
+          User {{ staffData.name }} already exists
+          <template v-slot:action="{ attrs }">
+            <v-btn text v-bind="attrs" @click="showSnackbar = false">
+              <v-icon fab>mdi-close-circle</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
       </v-form>
     </v-card>
   </v-row>
@@ -69,7 +86,9 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      valid: false,
+      valid: true,
+      showSnackbar: false,
+      isSuccess: false,
       staffData: {
         name: "",
         email: "",
@@ -115,7 +134,11 @@ export default {
     },
     handleSubmit() {
       const valid = this.validate();
-      if (valid) {
+      const staff = this.$store.getters.getStaffByEmail(this.staffData.email);
+      if (!staff) {
+        this.isSuccess = true;
+      }
+      if (valid && this.isSuccess) {
         const newStaff = {
           ...this.staffData,
           type: this.type,
@@ -123,10 +146,13 @@ export default {
           id: uuid.v4(),
         };
         this.addStaff(newStaff);
-        this.$router.push({
-          name: "staff",
-        });
+        this.showSnackbar = true;
       }
+      this.showSnackbar = true;
+    },
+    navigateToStaffPage() {
+      this.$router.push("/staff");
+      this.showSnackbar = false;
     },
   },
 };

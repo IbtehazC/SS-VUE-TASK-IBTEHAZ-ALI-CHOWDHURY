@@ -4,7 +4,7 @@
       width="270"
       v-for="staff in staffs"
       :key="staff.id"
-      class="mx-4 justify-center py-2 my-8 rounded-lg elevation-2"
+      class="mx-4 justify-center py-2 my-8 rounded-lg"
     >
       <v-card-actions class="justify-end">
         <v-menu offset-y>

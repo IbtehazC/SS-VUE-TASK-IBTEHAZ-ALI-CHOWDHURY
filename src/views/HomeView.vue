@@ -89,31 +89,28 @@
           <v-spacer />
           <v-col cols="6">
             <h5 class="text-h3">
+              Do you want a more organized and efficient workplace?
+            </h5>
+            <p class="text-subtitle-2">
               With its easy-to-use interface and powerful features, StaffM helps
               businesses manage their employees more effectively and
-              efficiently.
-            </h5>
-            <p>
-              Since its launch, StaffM has helped thousands of businesses save
-              time and money by simplifying their employee management workflow.
-              We set out to create a solution that would streamline of processes
-              for businesses of all sizes.
-            </p>
-          </v-col>
+              efficiently. Since its launch, StaffM has helped thousands of
+              businesses save time and money by simplifying their employee
+              management workflow.
+            </p></v-col
+          >
         </v-row>
       </v-card>
       <v-card color="#EFEFEF" class="hidden-sm-and-up my-8 mx-8 rounded-lg">
         <v-sheet color="#EFEFEF" class="py-4 px-4 rounded-b-0">
           <h5 class="text-h5">
-            With its easy-to-use interface and powerful features, WorkforcePro
-            helps businesses manage their employees more effectively and
-            efficiently.
+            Do you want a more organized and efficient workplace?
           </h5>
-          <p>
+          <p class="text-body-1">
+            With its easy-to-use interface and powerful features, StaffM helps
+            businesses manage their employees more effectively and efficiently.
             Since its launch, StaffM has helped thousands of businesses save
-            time and money by simplifying their employee management workflow. We
-            set out to create a solution that would streamline of processes for
-            businesses of all sizes.
+            time and money by simplifying their employee management workflow.
           </p>
         </v-sheet>
         <v-img class="mx-4 mb-8" src="/Performance-amico.png"></v-img>
@@ -126,7 +123,7 @@
         show-arrows-on-hover
         delimiter-icon=""
       >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
+        <v-carousel-item>
           <v-sheet height="100%">
             <v-row class="fill-height" align="center" justify="center">
               <v-card
@@ -150,6 +147,69 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                       <v-list-item-title>Evan You</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-actions>
+              </v-card>
+            </v-row>
+          </v-sheet>
+        </v-carousel-item>
+        <v-carousel-item>
+          <v-sheet height="100%">
+            <v-row class="fill-height" align="center" justify="center">
+              <v-card
+                class="mx-auto py-12 px-8"
+                color="#FED0AC"
+                max-width="500"
+              >
+                <v-card-text class="text-h5 font-weight-bold">
+                  "The application can be accessed and managed remotely, which
+                  makes it a convenient tool for businesses. StaffM offers a
+                  variety of features that help businesses manage their
+                  employees"
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-actions>
+                  <v-list-item class="grow">
+                    <v-list-item-avatar color="white">
+                      <v-img
+                        class="elevation-6"
+                        alt=""
+                        src="https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Round&hairColor=BrownDark&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=Overall&clotheColor=Gray01&eyeType=Dizzy&eyebrowType=RaisedExcited&mouthType=Eating&skinColor=Brown"
+                      ></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title>Juan Pablo</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-actions>
+              </v-card>
+            </v-row>
+          </v-sheet>
+        </v-carousel-item>
+        <v-carousel-item>
+          <v-sheet height="100%">
+            <v-row class="fill-height" align="center" justify="center">
+              <v-card
+                class="mx-auto py-12 px-8"
+                color="#FED0AC"
+                max-width="500"
+              >
+                <v-card-text class="text-h5 font-weight-bold">
+                  "StaffM has helped a lot to jum start my business."
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-actions>
+                  <v-list-item class="grow">
+                    <v-list-item-avatar color="white">
+                      <v-img
+                        class="elevation-6"
+                        alt=""
+                        src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairTheCaesarSidePart&accessoriesType=Sunglasses&hairColor=Blonde&facialHairType=Blank&facialHairColor=Platinum&clotheType=ShirtScoopNeck&clotheColor=Blue02&eyeType=Dizzy&eyebrowType=UpDownNatural&mouthType=ScreamOpen&skinColor=Yellow"
+                      ></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title>Xin Que</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-card-actions>
