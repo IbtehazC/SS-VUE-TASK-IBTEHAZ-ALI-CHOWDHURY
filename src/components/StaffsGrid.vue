@@ -1,5 +1,5 @@
 <template>
-  <v-row class="grey lighten-3 my-4">
+  <v-row class="grey lighten-3">
     <v-card
       width="270"
       v-for="staff in staffs"

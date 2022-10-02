@@ -1,17 +1,28 @@
 <template>
   <div>
-    <v-app-bar color="white" elevate-on-scroll>
-      <v-toolbar-title>Staff Management</v-toolbar-title>
+    <v-app-bar color="deep-purple lighten-3" elevate-on-scroll>
+      <v-toolbar-title class="text-h6">STAFF Management</v-toolbar-title>
       <v-spacer />
 
       <span class="hidden-sm-and-up">
-        <v-btn @click.stop="drawer = !drawer">Menu</v-btn>
+        <v-btn
+          depressed
+          color="deep-purple lighten-3"
+          @click.stop="drawer = !drawer"
+          >Menu</v-btn
+        >
       </span>
 
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn to="/">Home</v-btn>
-        <v-btn to="/about">About</v-btn>
-        <v-btn to="/staff">Staff</v-btn>
+        <v-btn depressed color="deep-purple lighten-3" to="/">Home</v-btn>
+        <v-btn
+          x-large
+          class="py-2"
+          dark
+          color="black"
+          to="/staff"
+          >TRY OUR APP</v-btn
+        >
       </v-toolbar-items>
     </v-app-bar>
 
@@ -34,9 +45,10 @@ export default {
       drawer: false,
       items: [
         { title: "Home", link: "/" },
-        { title: "About", link: "/about" },
         { title: "Try Out", link: "/staff" },
       ],
+      name: "staff",
+      isApp: this.name === this.$route.name ? truth : false,
     };
   },
 };

@@ -1,54 +1,53 @@
 <template>
-  <v-card max-width="1400px" class="rounded-lg elevation-2 my-4">
+  <v-layout v-resize="onResize" class="rounded-lg" column>
     <v-data-table
       :headers="headersForStaff"
       :items="staffs"
-      :items-per-page="5"
-      class="rounded"
-      hide-default-header
+      :search="search"
+      :sort-by="['name']"
+      :class="{ mobile: isMobile }"
+      class="rounde-lg"
     >
-      <template v-slot:header="{ props: { headers } }">
-        <thead class="my-8">
-          <tr>
-            <th v-for="h in headersForStaff">
-              <p class="text-subtitle-2 font-weight-bold my-4">
-                {{ h.text }}
-              </p>
-            </th>
-          </tr>
-        </thead>
+      <template slot="items" slot-scope="props">
+        <tr v-if="!isMobile">
+          <td>{{ item.img }}</td>
+          <td class="text-xs-right">{{ item.name }}</td>
+          <td class="text-xs-right">{{ item.jobTitle }}</td>
+          <td class="text-xs-right">{{ item.email }}</td>
+          <td class="text-xs-right">{{ item.phoneNumber }}</td>
+          <td class="text-xs-right">
+            
+          </td>
+        </tr>
+        <tr v-else>
+          <td>
+            <ul class="flex-content">
+              <li class="flex-item" data-label="Name">{{ item.img }}</li>
+              <li class="flex-item" data-label="Calories">
+                {{ item.name }}
+              </li>
+              <li class="flex-item" data-label="Fat (g)">
+                {{ item.jobTitle }}
+              </li>
+              <li class="flex-item" data-label="Carbs (g)">
+                {{ item.email }}
+              </li>
+              <li class="flex-item" data-label="Protein (g)">
+                {{ item.phoneNumber }}
+              </li>
+              <li class="flex-item" data-label="Iron (%)">
+                <!-- {{ props.item.iron }} -->
+                Hio
+              </li>
+            </ul>
+          </td>
+        </tr>
       </template>
-      <template v-slot:item.img="{ item }">
-        <v-avatar
-          size="32"
-          color="grey"
-          class="my-4 d-flex justify-center item-center"
-        >
-          <v-icon dark>mdi-account-circle</v-icon>
-        </v-avatar>
-      </template>
-      <template v-slot:item.name="{ item }">
-        <div class="text-body-2 font-weight-medium my-0">
-          {{ item.name }}
-        </div>
-      </template>
-      <template v-slot:item.jobTitle="{ item }">
-        <div class="text-body-2 my-0">{{ item.jobTitle }}</div>
-      </template>
-      <template v-slot:item.email="{ item }">
-        <div class="text-body-2 my-0">{{ item.email }}</div>
-      </template>
-      <template v-slot:item.phoneNumber="{ item }">
-        <div class="text-body-2 my-0">{{ item.phoneNumber }}</div>
-      </template>
-      <template v-slot:item.actions="{ item }">
-        <v-icon size="20" class="mr-2" @click="goToEmployeePage(item)">
-          mdi-pencil
-        </v-icon>
-        <v-icon size="20" @click="deleteStaff(item.id)"> mdi-delete </v-icon>
-      </template>
+      <v-alert slot="no-results" :value="true" color="error" icon="warning">
+        Your search for "{{ search }}" found no results.
+      </v-alert>
     </v-data-table>
-  </v-card>
+  </v-layout>
 </template>
 
 <script>
@@ -72,6 +71,9 @@ export default {
         { text: "Phone Number", value: "phoneNumber", sortable: false },
         { text: "Actions", value: "actions", sortable: false },
       ],
+      selected: [],
+      search: "",
+      isMobile: false,
     };
   },
   props: ["staffs"],
@@ -83,6 +85,87 @@ export default {
       });
     },
     ...mapActions(["deleteStaff"]),
+    onResize() {
+      if (screen.width < 769) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    },
+    toggleAll() {
+      if (this.selected.length) this.selected = [];
+      else this.selected = this.desserts.slice();
+    },
+    changeSort(column) {
+      console.log(column);
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending;
+      } else {
+        this.pagination.sortBy = column;
+        this.pagination.descending = false;
+      }
+    },
   },
 };
 </script>
+
+<style scoped>
+.mobile {
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile table.v-table tr {
+    max-width: 100%;
+    position: relative;
+    display: block;
+  }
+
+  .mobile table.v-table tr:nth-child(odd) {
+    border-left: 6px solid deeppink;
+  }
+
+  .mobile table.v-table tr:nth-child(even) {
+    border-left: 6px solid cyan;
+  }
+
+  .mobile table.v-table tr td {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #f5f5f5;
+    height: auto;
+    padding: 10px;
+  }
+
+  .mobile table.v-table tr td ul li:before {
+    content: attr(data-label);
+    padding-right: 0.5em;
+    text-align: left;
+    display: block;
+    color: #999;
+  }
+  .v-datatable__actions__select {
+    width: 50%;
+    margin: 0px;
+    justify-content: flex-start;
+  }
+  .mobile .theme--light.v-table tbody tr:hover:not(.v-datatable__expand-row) {
+    background: transparent;
+  }
+}
+.flex-content {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flex-item {
+  padding: 5px;
+  width: 50%;
+  height: 40px;
+  font-weight: bold;
+}
+</style>
